@@ -34,13 +34,13 @@ See details on supported metrics at https://docs.aws.amazon.com/AmazonCloudWatch
 
 Item Syntax | Description | Units |
 ----------- | ----------- | ----- |
-aws.cloudwatch.metric[region, access_key_id, secret_access_key, namespace, metric, dimensions, interval, statistic] | Retrieve cloudwatch metric | |
+aws.cloudwatch.metric[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions] | Retrieve cloudwatch metric | |
 
 *Example:*
 
 Number of messages within last hour in the SQS exampleQueue:
 ```
-aws.cloudwatch.metric[eu-west-1, EXAMPLEACCESSKEY, ExampleSecretKey, AWS/SQS, NumberOfMessagesReceived, 3600, Sum QueueName=exampleQueue
+aws.cloudwatch.metric[eu-west-1, EXAMPLEACCESSKEY, ExampleSecretKey, AWS/SQS, NumberOfMessagesReceived, 3600, Sum, QueueName=exampleQueue
 ```
 
 ### S3 Bucket Metrics
