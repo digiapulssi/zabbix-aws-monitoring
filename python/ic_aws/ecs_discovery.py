@@ -44,7 +44,7 @@ def main(args=None):
     for arn in serviceArns:
         names.append({
                 "{#CLUSTER_NAME}": args.cluster_name,
-                "{#NAME}": arn.split("/")[-1]
+                "{#SERVICE_NAME}": arn.split("/")[-1]
             })
     discovery = {"data": names}
     print json.dumps(discovery)

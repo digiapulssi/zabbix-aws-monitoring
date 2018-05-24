@@ -8,7 +8,7 @@ checkstyle: $(scripts) $(tests) setup.py
 	find . -name "*.py" -exec pycodestyle \{\} \; | tee checkstyle
 
 .coverage: $(scripts) $(tests)
-	coverage run --source iiris_cloud -m unittest discover -s tests/
+	coverage run --source ic_aws -m unittest discover -s tests/
 
 test: .coverage
 	coverage report -m

@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys
+from dateutil.tz import tzlocal
+from datetime import datetime
 from argparse import ArgumentParser
 from aws_client import AWSClient, add_aws_client_arguments
 
@@ -89,21 +91,27 @@ class S3BucketStat(object):
             for item in response["Contents"]:
                 visitor.visit(item)
 
+    def now_with_tz(self):
+        return datetime.now(tzlocal())
+
     def s3_bucket_stat(self, bucket_name, stat):
         """Retrieves named statistic from S3 bucket."""
 
         if stat == "oldest":
             visitor = MinValueVisitor("LastModified")
+            self.iterate_bucket(bucket_name, visitor)
+            return (self.now_with_tz() - visitor.value()).total_seconds()
         elif stat == "newest":
             visitor = MaxValueVisitor("LastModified")
+            self.iterate_bucket(bucket_name, visitor)
+            return (self.now_with_tz() - visitor.value()).total_seconds()
         elif stat == "size":
             visitor = SumVisitor("Size")
+            self.iterate_bucket(bucket_name, visitor)
+            return visitor.value()
         else:
             print "Invalid stat name {}.".format(stat)
             sys.exit(1)
-
-        self.iterate_bucket(bucket_name, visitor)
-        return visitor.value()
 
 
 def main(args=None):
