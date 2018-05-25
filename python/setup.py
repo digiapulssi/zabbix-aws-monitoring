@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="aws-monitoring",
-    version="1.0.0",
+    version="1.0.1",
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
     description="Monitoring scripts for AWS services",

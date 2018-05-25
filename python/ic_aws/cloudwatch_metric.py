@@ -9,8 +9,9 @@ class CloudWatchMetric(object):
     def __init__(self, aws_client):
         self._client = aws_client.client()
 
-    def get_metric(self, interval, metric, namespace, statistic, dimensions):
-        end_time = datetime.utcnow()
+    def get_metric(self, interval, metric, namespace, statistic, dimensions,
+                   timeshift):
+        end_time = datetime.utcnow() - timedelta(seconds=timeshift)
         start_time = end_time - timedelta(seconds=interval)
         result = self._client.get_metric_statistics(
             Namespace=namespace,
@@ -32,6 +33,9 @@ def main(args=None):
     parser = ArgumentParser(description="Retrieve AWS CloudWatch metrics")
     add_aws_client_arguments(parser)
 
+    parser.add_argument("--timeshift", type=int, default=0,
+                        help="Time shift for interval")
+
     parser.add_argument("namespace", help="AWS namespace. e.g. AWS/ECS")
     parser.add_argument("metric", help="Metric to obtain")
     parser.add_argument("interval", type=int, help="Statistic interval")
@@ -48,7 +52,7 @@ def main(args=None):
     aws_client = AWSClient("cloudwatch", args)
     client = CloudWatchMetric(aws_client)
     value = client.get_metric(args.interval, args.metric, args.namespace,
-                              args.statistic, dimensions)
+                              args.statistic, dimensions, args.timeshift)
     print(value)
 
 
