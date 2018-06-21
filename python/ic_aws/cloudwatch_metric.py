@@ -53,7 +53,10 @@ def main(args=None):
     client = CloudWatchMetric(aws_client)
     value = client.get_metric(args.interval, args.metric, args.namespace,
                               args.statistic, dimensions, args.timeshift)
-    print(value)
+    if value == -1:
+        print("")
+    else:
+        print(value)
 
 
 if __name__ == "__main__":

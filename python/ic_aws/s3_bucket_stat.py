@@ -128,7 +128,10 @@ def main(args=None):
     aws_client = AWSClient("s3", args)
     client = S3BucketStat(aws_client)
     value = client.s3_bucket_stat(args.bucket_name, args.stat)
-    print(value)
+    if value == -1:
+        print("")
+    else:
+        print(value)
 
 
 if __name__ == "__main__":
