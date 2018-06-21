@@ -13,7 +13,7 @@ This python module provides Zabbix monitoring support for AWS resources.
 1. Install the python module using pip.
 
 ```
-pip install https://github.com/digiapulssi/zabbix-aws-monitoring/releases/download/1.0.1/aws-monitoring-1.0.1.tar.gz
+pip install https://github.com/digiapulssi/zabbix-aws-monitoring/releases/download/1.0.3/aws-monitoring-1.0.3.tar.gz
 ```
 
 2. Copy the [Zabbix agent configuration](etc/zabbix/zabbix_agentd.d/ic_aws.conf) to /etc/zabbix/zabbix_agentd.d directory.
