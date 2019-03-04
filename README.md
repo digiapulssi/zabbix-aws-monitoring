@@ -30,6 +30,8 @@ aws.ecs.discover_services[region, access_key_id, secret_access_key, cluster_name
 
 aws.ecs.discover_tasks[region, access_key_id, secret_access_key, cluster_name, container_port] | Discover tasks in ECS cluster | {#TASKARN}, {#BINDIP} {#HOSTPORT} |
 
+aws.rds.discover_db_instances[region, access_key_id, secret_access_key, cluster_identifier] | Discover instances in RDS cluster | {#DB_IDENTIFIER} |
+
 ### CloudWatch Metrics
 
 See details on supported metrics at https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html
