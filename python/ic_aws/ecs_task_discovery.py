@@ -40,8 +40,8 @@ class ECSTaskDiscovery(object):
 
     def find_network_bindings(self, task, container_port, cluster_name):
         network_bindings = []
+        instances = self.find_instances(cluster_name, task["containerInstanceArn"])
         for container in task["containers"]:
-            instances = self.find_instances(cluster_name, container["containerArn"])
             for network_binding in container["networkBindings"]:
                 if container_port == str(network_binding["containerPort"]):
                     for instance in instances:
@@ -59,7 +59,7 @@ class ECSTaskDiscovery(object):
              instance_ids.append(instance["ec2InstanceId"])
 
         instances = self._ec2_client.describe_instances(
-            instanceIds=instance_ids
+            InstanceIds=instance_ids
         )
 
         result = []
