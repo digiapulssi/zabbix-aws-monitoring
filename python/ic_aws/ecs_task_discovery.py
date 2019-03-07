@@ -15,7 +15,6 @@ class ECSTaskDiscovery(object):
         tasks = self._client.list_tasks(
             cluster=cluster_name
         )
-        print json.dumps(tasks)
 
         task_descs_result = self._client.describe_tasks(
             cluster=cluster_name,
