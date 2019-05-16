@@ -7,7 +7,7 @@ setup(
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
     description="Monitoring scripts for AWS services",
-    url="https://github.com/digiapulssi/zabbix-monitoring-scripts/",
+    url="https://github.com/digiapulssi/zabbix-aws-monitoring/",
     license="GPLv3",
     packages=['ic_aws'],
     entry_points={
