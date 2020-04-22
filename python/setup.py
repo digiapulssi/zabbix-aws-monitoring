@@ -13,6 +13,7 @@ setup(
     entry_points={
         "console_scripts": [
             "aws_s3_bucket_stat = ic_aws.s3_bucket_stat:main",
+            "aws_s3_bucket_object_get = ic_aws.s3_bucket_object_get:main",
             "aws_cloudwatch_metric = ic_aws.cloudwatch_metric:main",
             "aws_ecs_discovery = ic_aws.ecs_discovery:main",
             "aws_ecs_task_discovery = ic_aws.ecs_task_discovery:main",
