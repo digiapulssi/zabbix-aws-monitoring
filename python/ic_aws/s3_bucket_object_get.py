@@ -9,11 +9,11 @@ class S3BucketObjectGet(object):
     def __init__(self, aws_client):
         self._client = aws_client.client()
 
-    def s3_bucket_object_get(self, bucket_name, object_key):
+    def s3_bucket_object_get(self, bucket_name, object_key, encoding):
         """Get object contents from S3 bucket."""
 
         obj = self._client.Object(bucket_name, object_key)
-        return obj.get()['Body'].read().decode('utf-8') 
+        return obj.get()['Body'].read().decode(encoding) 
 
 
 def main(args=None):
@@ -22,12 +22,13 @@ def main(args=None):
 
     parser.add_argument("bucket_name", help="S3 bucket name")
     parser.add_argument("object_key", help="S3 object key")
+    parser.add_argument("encoding", default="utf-8", help="Object encoding")
 
     args = parser.parse_args(args)
 
     aws_client = AWSClient("s3", args)
     client = S3BucketObjectGet(aws_client)
-    contents = client.s3_bucket_object_get(args.bucket_name, args.object_key)
+    contents = client.s3_bucket_object_get(args.bucket_name, args.object_key, args.encoding)
     print(contents)
 
 
