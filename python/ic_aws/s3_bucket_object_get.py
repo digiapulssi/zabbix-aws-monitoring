@@ -13,7 +13,7 @@ class S3BucketObjectGet(object):
         """Get object contents from S3 bucket."""
 
         obj = self._client.Object(bucket_name, object_key)
-        return obj.get()['Body'].read().decode(encoding) 
+        return obj.get()['Body'].read().decode(encoding)
 
 
 def main(args=None):

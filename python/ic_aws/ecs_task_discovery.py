@@ -55,7 +55,7 @@ class ECSTaskDiscovery(object):
 
         instance_ids = []
         for instance in container_instances["containerInstances"]:
-             instance_ids.append(instance["ec2InstanceId"])
+            instance_ids.append(instance["ec2InstanceId"])
 
         instances = self._ec2_client.describe_instances(
             InstanceIds=instance_ids
