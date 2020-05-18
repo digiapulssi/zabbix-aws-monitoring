@@ -26,7 +26,7 @@ def main(args=None):
 
     args = parser.parse_args(args)
 
-    aws_client = AWSClient("s3", args)
+    aws_client = AWSResourceClient("s3", args)
     client = S3BucketObjectGet(aws_client)
     contents = client.s3_bucket_object_get(args.bucket_name, args.object_key, args.encoding)
     print(contents)
