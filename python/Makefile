@@ -7,13 +7,13 @@ all: clean checkstyle htmlcov dist
 checkstyle: $(scripts) $(tests) setup.py
 	find . -name "*.py" -exec pycodestyle \{\} --max-line-length=120 \; | tee checkstyle
 
-.coverage: $(scripts) $(tests)	
-	coverage run --source ic_aws -m unittest discover -s tests/	
+.coverage: $(scripts) $(tests)
+	coverage run --source ic_aws -m unittest discover -s tests/
 
-test: .coverage	
+test: .coverage
 	coverage report -m
 
-htmlcov: .coverage	
+htmlcov: .coverage
 	coverage html
 
 dist: $(scripts) $(tests) setup.py
