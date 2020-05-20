@@ -18,6 +18,21 @@ class AWSClient(object):
         return self._client
 
 
+class AWSResourceClient(object):
+    """AWS API resource client class."""
+
+    def __init__(self, resource, args):
+        """Initializes connection to AWS resource service using boto3 client."""
+        self._client = boto3.resource(
+            resource,
+            region_name=args.region_name,
+            aws_access_key_id=args.aws_access_key_id,
+            aws_secret_access_key=args.aws_secret_access_key)
+
+    def client(self):
+        return self._client
+
+
 def add_aws_client_arguments(parser):
     """Adds command line options for AWS client to argparse parser."""
     parser.add_argument("-r", "--region", dest="region_name")

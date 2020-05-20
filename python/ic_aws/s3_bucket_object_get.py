@@ -2,7 +2,7 @@
 
 import sys
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from aws_client import AWSResourceClient, add_aws_client_arguments
 
 
 class S3BucketObjectGet(object):
@@ -13,7 +13,7 @@ class S3BucketObjectGet(object):
         """Get object contents from S3 bucket."""
 
         obj = self._client.Object(bucket_name, object_key)
-        return obj.get()['Body'].read().decode(encoding) 
+        return obj.get()['Body'].read().decode(encoding)
 
 
 def main(args=None):
@@ -26,7 +26,7 @@ def main(args=None):
 
     args = parser.parse_args(args)
 
-    aws_client = AWSClient("s3", args)
+    aws_client = AWSResourceClient("s3", args)
     client = S3BucketObjectGet(aws_client)
     contents = client.s3_bucket_object_get(args.bucket_name, args.object_key, args.encoding)
     print(contents)
