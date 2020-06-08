@@ -13,15 +13,26 @@ class CloudWatchMetric(object):
                    timeshift):
         end_time = datetime.utcnow() - timedelta(seconds=timeshift)
         start_time = end_time - timedelta(seconds=interval)
-        result = self._client.get_metric_statistics(
+        if len(dimensions) == 0:
+            result = self._client.get_metric_statistics(
             Namespace=namespace,
             MetricName=metric,
-            Dimensions=dimensions,
             StartTime=start_time.isoformat(),
             EndTime=end_time.isoformat(),
             Statistics=[statistic],
             Period=interval
         )
+        else:
+            result = self._client.get_metric_statistics(
+                Namespace=namespace,
+                MetricName=metric,
+                Dimensions=dimensions,
+                StartTime=start_time.isoformat(),
+                EndTime=end_time.isoformat(),
+                Statistics=[statistic],
+                Period=interval
+        )
+            
         if len(result["Datapoints"]) > 0:
             ret_val = result["Datapoints"][0][statistic]
         else:
@@ -43,11 +54,11 @@ def main(args=None):
     parser.add_argument("dimensions", help="Dimension filter")
 
     args = parser.parse_args(args)
-
     dimensions = list()
-    for dimension in args.dimensions.split(","):
-        instance = dimension.split("=")
-        dimensions.append(dict(zip(("Name", "Value"), instance)))
+    if len(args.dimensions) > 0:
+        for dimension in args.dimensions.split(","):
+            instance = dimension.split("=")
+            dimensions.append(dict(zip(("Name", "Value"), instance)))
 
     aws_client = AWSClient("cloudwatch", args)
     client = CloudWatchMetric(aws_client)
