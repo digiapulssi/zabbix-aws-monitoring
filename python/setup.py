@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="aws-monitoring",
-    version="1.0.8",
+    version="1.0.9",
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
     description="Monitoring scripts for AWS services",
@@ -17,7 +17,8 @@ setup(
             "aws_cloudwatch_metric = ic_aws.cloudwatch_metric:main",
             "aws_ecs_discovery = ic_aws.ecs_discovery:main",
             "aws_ecs_task_discovery = ic_aws.ecs_task_discovery:main",
-            "aws_rds_discovery = ic_aws.rds_discovery:main"
+            "aws_rds_discovery = ic_aws.rds_discovery:main",
+            "aws_lambda_discovery = ic_aws.lambda_discovery:main"
         ]
     },
     install_requires=['boto3>=1.7.19']
