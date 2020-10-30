@@ -17,7 +17,7 @@ htmlcov: .coverage
 	coverage html
 
 dist: $(scripts) $(tests) setup.py
-	python setup.py sdist --format=gztar
+	python3 setup.py sdist --format=gztar
 
 clean:
 	rm -rf dist
