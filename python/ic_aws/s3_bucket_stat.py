@@ -4,7 +4,7 @@ import sys
 from dateutil.tz import tzlocal
 from datetime import datetime
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 
 
 class MinValueVisitor(object):

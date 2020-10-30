@@ -2,7 +2,7 @@
 
 import sys
 from argparse import ArgumentParser
-from aws_client import AWSResourceClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSResourceClient, add_aws_client_arguments
 
 
 class S3BucketObjectGet(object):

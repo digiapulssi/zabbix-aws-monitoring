@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 
 
 class CloudWatchMetric(object):
