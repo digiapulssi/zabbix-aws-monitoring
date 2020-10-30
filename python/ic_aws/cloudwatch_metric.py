@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from datetime import datetime, timedelta
 from argparse import ArgumentParser

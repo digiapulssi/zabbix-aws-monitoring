@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 from dateutil.tz import tzlocal
@@ -110,7 +110,7 @@ class S3BucketStat(object):
             self.iterate_bucket(bucket_name, visitor)
             return visitor.value()
         else:
-            print "Invalid stat name {}.".format(stat)
+            print("Invalid stat name {}.".format(stat))
             sys.exit(1)
 
 
