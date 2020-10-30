@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 import os
@@ -7,9 +7,9 @@ from mock import Mock, call, patch
 from dateutil.tz import tzlocal
 from datetime import datetime
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ic_aws"))
 
-from ic_aws.s3_bucket_stat import S3BucketStat  # noqa
+from s3_bucket_stat import S3BucketStat  # noqa
 
 
 class MockAWSClient:
