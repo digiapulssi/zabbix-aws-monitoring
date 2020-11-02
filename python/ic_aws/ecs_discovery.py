@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 import json
 
 
@@ -47,7 +47,7 @@ def main(args=None):
                 "{#SERVICE_NAME}": arn.split("/")[-1]
             })
     discovery = {"data": names}
-    print json.dumps(discovery)
+    print(json.dumps(discovery))
 
 
 if __name__ == "__main__":

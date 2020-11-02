@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 from dateutil.tz import tzlocal
 from datetime import datetime
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 
 
 class MinValueVisitor(object):
@@ -110,7 +110,7 @@ class S3BucketStat(object):
             self.iterate_bucket(bucket_name, visitor)
             return visitor.value()
         else:
-            print "Invalid stat name {}.".format(stat)
+            print("Invalid stat name {}.".format(stat))
             sys.exit(1)
 
 

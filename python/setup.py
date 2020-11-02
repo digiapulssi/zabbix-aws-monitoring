@@ -1,9 +1,11 @@
+#!/usr/bin/python3
+
 import os
 from setuptools import setup
 
 setup(
     name="aws-monitoring",
-    version="1.0.9",
+    version="1.0.10",
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
     description="Monitoring scripts for AWS services",
@@ -21,5 +23,5 @@ setup(
             "aws_lambda_discovery = ic_aws.lambda_discovery:main"
         ]
     },
-    install_requires=['boto3>=1.7.19']
+    install_requires=['boto3>=1.16.8']
 )

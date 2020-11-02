@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from datetime import datetime, timedelta
 from argparse import ArgumentParser
-from aws_client import AWSClient, add_aws_client_arguments
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 
 
 class CloudWatchMetric(object):
@@ -15,13 +15,13 @@ class CloudWatchMetric(object):
         start_time = end_time - timedelta(seconds=interval)
         if len(dimensions) == 0:
             result = self._client.get_metric_statistics(
-            Namespace=namespace,
-            MetricName=metric,
-            StartTime=start_time.isoformat(),
-            EndTime=end_time.isoformat(),
-            Statistics=[statistic],
-            Period=interval
-        )
+                Namespace=namespace,
+                MetricName=metric,
+                StartTime=start_time.isoformat(),
+                EndTime=end_time.isoformat(),
+                Statistics=[statistic],
+                Period=interval
+            )
         else:
             result = self._client.get_metric_statistics(
                 Namespace=namespace,
@@ -31,8 +31,8 @@ class CloudWatchMetric(object):
                 EndTime=end_time.isoformat(),
                 Statistics=[statistic],
                 Period=interval
-        )
-            
+            )
+
         if len(result["Datapoints"]) > 0:
             ret_val = result["Datapoints"][0][statistic]
         else:
