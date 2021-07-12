@@ -65,6 +65,9 @@ aws.s3.bucket_size[region, access_key_id, secret_access_key, bucket_name] | Tota
 
 See details on supported functions and usage  at https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/index.html 
 
+Currently only string optional arguments are supported. 
+
+
 Item Syntax | Description | Units |
 ----------- | ----------- | ----- |
 aws.query[region, access_key_id, secret_access_key, namespace, function, arguments] | Call a specified function in specified namespace | JSON |
