@@ -21,7 +21,7 @@ setup(
             "aws_ecs_task_discovery = ic_aws.ecs_task_discovery:main",
             "aws_rds_discovery = ic_aws.rds_discovery:main",
             "aws_lambda_discovery = ic_aws.lambda_discovery:main",
-            "aws_query = ic_awx.aws_query:main"
+            "aws_query = ic_aws.aws_query:main"
         ]
     },
     install_requires=['boto3>=1.16.8']
