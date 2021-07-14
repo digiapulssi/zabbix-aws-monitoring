@@ -40,6 +40,7 @@ Item Syntax | Description | Units |
 aws.cloudwatch.metric[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions] | Retrieve cloudwatch metric | depends on metric |
 aws.cloudwatch.metric.timeshift[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions, timeshift] | Retrieve timeshifted cloudwatch metric | depends on metric |
 
+
 Timeshift is specified in seconds
 
 *Example:*
@@ -59,3 +60,14 @@ Item Syntax | Description | Units |
 aws.s3.bucket_oldest[region, access_key_id, secret_access_key, bucket_name] | Age of oldest item in bucket | seconds |
 aws.s3.bucket_newest[region, access_key_id, secret_access_key, bucket_name] | Age of newest item in bucket | seconds |
 aws.s3.bucket_size[region, access_key_id, secret_access_key, bucket_name] | Total size of bucket | bytes |
+
+### Other metrics
+
+See details on supported functions and usage  at https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/index.html 
+
+Currently only string optional arguments are supported. 
+
+
+Item Syntax | Description | Units |
+----------- | ----------- | ----- |
+aws.query[region, access_key_id, secret_access_key, namespace, function, arguments] | Call a specified function in specified namespace | JSON |
