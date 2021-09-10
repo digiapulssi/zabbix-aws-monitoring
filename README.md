@@ -37,8 +37,8 @@ See details on supported metrics at https://docs.aws.amazon.com/AmazonCloudWatch
 
 Item Syntax | Description | Units |
 ----------- | ----------- | ----- |
-aws.cloudwatch.metric[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions] | Retrieve cloudwatch metric | depends on metric |
-aws.cloudwatch.metric.timeshift[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions, timeshift] | Retrieve timeshifted cloudwatch metric | depends on metric |
+aws.cloudwatch.metric[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions, unit] | Retrieve cloudwatch metric | depends on metric |
+aws.cloudwatch.metric.timeshift[region, access_key_id, secret_access_key, namespace, metric, interval, statistic, dimensions, timeshift, unit] | Retrieve timeshifted cloudwatch metric | depends on metric |
 
 
 Timeshift is specified in seconds
