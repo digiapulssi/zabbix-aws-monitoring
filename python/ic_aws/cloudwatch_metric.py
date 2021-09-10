@@ -10,7 +10,7 @@ class CloudWatchMetric(object):
         self._client = aws_client.client()
 
     def get_metric(self, interval, metric, namespace, statistic, dimensions,
-                   timeshift):
+                   timeshift, unit):
         end_time = datetime.utcnow() - timedelta(seconds=timeshift)
         start_time = end_time - timedelta(seconds=interval)
         if len(dimensions) == 0:
@@ -20,7 +20,8 @@ class CloudWatchMetric(object):
                 StartTime=start_time.isoformat(),
                 EndTime=end_time.isoformat(),
                 Statistics=[statistic],
-                Period=interval
+                Period=interval,
+                Unit=unit
             )
         else:
             result = self._client.get_metric_statistics(
@@ -30,7 +31,8 @@ class CloudWatchMetric(object):
                 StartTime=start_time.isoformat(),
                 EndTime=end_time.isoformat(),
                 Statistics=[statistic],
-                Period=interval
+                Period=interval,
+                Unit=unit
             )
 
         if len(result["Datapoints"]) > 0:
@@ -46,6 +48,9 @@ def main(args=None):
 
     parser.add_argument("--timeshift", type=int, default=0,
                         help="Time shift for interval")
+
+    parser.add_argument("--unit", type=str, default=None,
+                        help="The unit for a given metric.")
 
     parser.add_argument("namespace", help="AWS namespace. e.g. AWS/ECS")
     parser.add_argument("metric", help="Metric to obtain")
@@ -63,7 +68,8 @@ def main(args=None):
     aws_client = AWSClient("cloudwatch", args)
     client = CloudWatchMetric(aws_client)
     value = client.get_metric(args.interval, args.metric, args.namespace,
-                              args.statistic, dimensions, args.timeshift)
+                              args.statistic, dimensions, args.timeshift,
+                              args.unit)
     if value == -1:
         print("")
     else:
