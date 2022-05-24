@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name="aws-monitoring",
-    version="1.0.11",
+    version="1.0.12",
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
     description="Monitoring scripts for AWS services",
@@ -24,5 +24,5 @@ setup(
             "aws_query = ic_aws.aws_query:main"
         ]
     },
-    install_requires=['boto3>=1.16.8']
+    install_requires=['boto3==1.21.41']
 )
