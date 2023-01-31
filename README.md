@@ -70,4 +70,5 @@ Currently only string optional arguments are supported.
 
 Item Syntax | Description | Units |
 ----------- | ----------- | ----- |
-aws.query[region, access_key_id, secret_access_key, namespace, function, arguments] | Call a specified function in specified namespace | JSON |
+aws.query[region, access_key_id, secret_access_key, namespace, method, arguments] | Call a specified function in specified namespace | JSON |
+Example: aws.query[{$REGION}, {$AWS_ACCESS_KEY_ID}, {$AWS_SECRET_ACCESS_KEY},application-autoscaling,describe_scalable_targets,"ServiceNamespace=ecs"]
