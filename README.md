@@ -63,7 +63,7 @@ aws.s3.bucket_size[region, access_key_id, secret_access_key, bucket_name] | Tota
 
 ### Other metrics
 
-See details on supported functions and usage  at https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/index.html 
+See details on supported methods and usage  at https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/index.html 
 
 Currently only string optional arguments are supported. 
 
