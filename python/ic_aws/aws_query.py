@@ -26,14 +26,14 @@ class FunctionCaller(object):
             # Parse arguments (key-value pairs). Arguments can be given in two forms:
             # String form: key1=value1,key2=value2,key3=value3
             # List form  : key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/
+            # Forward slashes are used instead of brackets because brackets are not allowed in
+            # Zabbix UserParameter keys.
             for item in re.findall(r"(\w+)=(/[,\w]+/|[\w]+)", arguments):
 
                 # Grab key and value from RegEx matched tuple
                 key, value = item[0], item[1]
 
                 # Convert "list formatted" string to Python list, e.g. /1,2,3/ -> [1, 2, 3]
-                # Brackets are replaced by forward slashes in Zabbix
-                # item keys because UserParameters do not allow brackets.
                 if value[0] == "/" and value[-1] == "/":
                     value = value[1:-1].split(",")
 
