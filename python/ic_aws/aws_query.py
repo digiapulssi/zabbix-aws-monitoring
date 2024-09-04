@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 
+# Python imports
 from argparse import ArgumentParser
-from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 import json
+import re
+
+# Script imports
+from ic_aws.aws_client import AWSClient, add_aws_client_arguments
 
 
 class FunctionCaller(object):
@@ -17,7 +21,26 @@ class FunctionCaller(object):
         
     def parse_arguments(self, arguments):
         if(arguments):
-            return (dict(item.split("=") for item in arguments.split(",")))
+            output = {}
+
+            # Parse arguments (key-value pairs). Arguments can be given in two forms:
+            # String form: key1=value1,key2=value2,key3=value3
+            # List form  : key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/
+            for item in re.findall(r"(\w+)=(/[,\w]+/|[\w]+)", arguments):
+
+                # Grab key and value from RegEx matched tuple
+                key, value = item[0], item[1]
+
+                # Convert "list formatted" string to Python list, e.g. /1,2,3/ -> [1, 2, 3]
+                # Brackets are replaced by forward slashes in Zabbix
+                # item keys because UserParameters do not allow brackets.
+                if value[0] == "/" and value[-1] == "/":
+                    value = value[1:-1].split(",")
+
+                # Add key-value pair to dictionary
+                output[key] = value
+
+            return output
     
     def get_function(self, function_name):
         
@@ -43,7 +66,11 @@ def main(args=None):
     add_aws_client_arguments(parser)
     parser.add_argument("-n", "--namespace", help="Namespace of AWS service")    
     parser.add_argument("-f", "--function_name", help="Function that is to be called in boto3 library")
-    parser.add_argument("-a", "--arguments", help="Arguments that are given to the funcion. Arguments are given in form of a1=a,a2=b... Supports only string arguments.")
+    parser.add_argument("-a", "--arguments",
+        help="Arguments that are given to the function. Arguments can be given in two forms. " + 
+             "String form: key1=value1,key2=value2,key3=value3 " + 
+             "List form: key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/"
+    )
     args = parser.parse_args(args) 
     
     # Create aws connection and call specified function
