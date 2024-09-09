@@ -28,7 +28,7 @@ class FunctionCaller(object):
             # List form  : key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/
             # Forward slashes are used instead of brackets because brackets are not allowed in
             # Zabbix UserParameter keys.
-            for item in re.findall(r"(\w+)=(/[,\w]+/|[\w]+)", arguments):
+            for item in re.findall(r"(\w+)=(/[-,\w]+/|[-\w]+)", arguments):
 
                 # Grab key and value from RegEx matched tuple
                 key, value = item[0], item[1]
