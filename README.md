@@ -72,3 +72,9 @@ Item Syntax | Description | Units |
 ----------- | ----------- | ----- |
 aws.query[region, access_key_id, secret_access_key, namespace, method, arguments] | Call a specified function in specified namespace | JSON |
 Example: aws.query[{$REGION}, {$AWS_ACCESS_KEY_ID}, {$AWS_SECRET_ACCESS_KEY},application-autoscaling,describe_scalable_targets,"ServiceNamespace=ecs"]
+
+Arguments can be given in two forms:
+- String form: key1=value1,key2=value2,key3=value3
+- List form: key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/
+
+Forward slashes are used instead of brackets because brackets are not allowed in Zabbix UserParameter keys.
