@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 from argparse import ArgumentParser
 from ic_aws.aws_client import AWSClient, add_aws_client_arguments
