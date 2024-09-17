@@ -35,7 +35,7 @@ class FunctionCaller(object):
 
                 # Check for match before proceeding
                 if not match:
-                    break
+                    raise ValueError("Error while matching query arguments.")
 
                 # Grab key and value from RegEx matched tuple
                 key, value = match[1], match[2]
