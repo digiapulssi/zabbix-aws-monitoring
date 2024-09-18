@@ -5,9 +5,11 @@ from setuptools import setup
 
 setup(
     name="aws-monitoring",
-    version="1.0.13",
+    version="1.1.0",
     author="Sami Pajunen",
     author_email="sami.pajunen@digia.com",
+    maintainer="Antti-Pekka Meronen",
+    maintainer_email="antti-pekka.meronen@gmail.com",
     description="Monitoring scripts for AWS services",
     url="https://github.com/digiapulssi/zabbix-aws-monitoring/",
     license="GPLv3",
