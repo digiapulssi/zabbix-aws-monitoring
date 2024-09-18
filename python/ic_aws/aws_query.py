@@ -18,9 +18,8 @@ class FunctionCaller(object):
         self.arguments = self.parse_arguments(arguments)
         self.function = self.get_function(function_name)
 
-
     def parse_arguments(self, arguments):
-        if(arguments):
+        if (arguments):
             output = {}
 
             # Parse arguments (key-value pairs). Arguments can be given in two forms:
@@ -66,7 +65,9 @@ class FunctionCaller(object):
 
 # Used for unserializable fields like date
 def unserializable_to_str(item):
+
     return item.__str__()
+
 
 def main(args=None):
 
@@ -76,11 +77,11 @@ def main(args=None):
     add_aws_client_arguments(parser)
     parser.add_argument("-n", "--namespace", help="Namespace of AWS service")
     parser.add_argument("-f", "--function_name", help="Function that is to be called in boto3 library")
-    parser.add_argument("-a", "--arguments",
-        help="Arguments that are given to the function. Arguments can be given in two forms. " +
-             "String form: key1=value1,key2=value2,key3=value3 " +
-             "List form: key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/"
-    )
+    parser.add_argument("-a", "--arguments", help="Arguments that are given to the function. " +
+                        "Arguments can be given in two forms. " +
+                        "String form: key1=value1,key2=value2,key3=value3 " +
+                        "List form: key1=/1,2,3/,key2=/4,5,6/,key3=/7,8,9/"
+                        )
     args = parser.parse_args(args)
 
     # Create aws connection and call specified function
@@ -88,7 +89,8 @@ def main(args=None):
     caller = FunctionCaller(aws_client, args.function_name, args.arguments)
     result = caller.get_results()
 
-    print(json.dumps(result, default = unserializable_to_str))
+    print(json.dumps(result, default=unserializable_to_str))
+
 
 if __name__ == "__main__":
     main()
